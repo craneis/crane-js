@@ -6,16 +6,18 @@ var compass = require('gulp-compass');
 var concat = require('gulp-concat');
 var uglify = require("gulp-uglify");
 
-// Sass
-gulp.task('sass', function () {
-  return gulp.src(['web/sass/**/*.scss', '!web/sass/**/_*.scss'])
+// Compiling SCSS using SASS/Compass
+gulp.task('sass', function() { 
+    return gulp.src(['demo/assets/scss/*.scss', '!demo/scss/_*.scss'])
     .pipe(compass({
-        config_file: path.join(process.cwd(), 'config.rb'),
-        project: path.join(process.cwd(), '/web'),
-        css: 'css',
-        sass: 'sass'
+        config_file: 'config.rb',
+        css: 'demo/assets/css',
+        sass: 'demo/assets/scss',
+        image: 'demo/assets/images',
+        sourcemap: true
     }))
     .pipe(duration('compiling css'))
+    .pipe(gulp.dest('demo/assets/css'));
 });
 
 gulp.task('all', function() {
