@@ -33,7 +33,7 @@ gulp.task('all', function() {
 
 // Watch
 gulp.task('watch', function () {
-    gulp.watch('web/**/*.scss', ['sass']);
+    gulp.watch('demo/assets/scss/**/*.scss', ['sass']);
 });
 
 // Default
