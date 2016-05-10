@@ -8,7 +8,7 @@ var uglify = require("gulp-uglify");
 
 // Compiling SCSS using SASS/Compass
 gulp.task('sass', function() { 
-    return gulp.src(['demo/assets/scss/*.scss', '!demo/scss/_*.scss'])
+    return gulp.src(['demo/assets/scss/*.scss', '!demo/assets/scss/_*.scss'])
     .pipe(compass({
         config_file: 'config.rb',
         css: 'demo/assets/css',
@@ -22,9 +22,9 @@ gulp.task('sass', function() {
 
 gulp.task('all', function() {
   return gulp.src([
-        'js/crane.js',
-        'js/temlate.js',
-        'js/modal.js'
+        'src/crane.js',
+        'src/temlate.js',
+        'src/modal.js'
     ])
     .pipe(concat('all.js'))
     .pipe(uglify())

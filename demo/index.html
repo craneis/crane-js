@@ -2,19 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Template JS</title>
+    <title>Crane JS</title>
     
     <link href="assets/css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div id="wrapper">
-    </div>
+    <main id="wrapper">
+        <header id="header"></header>
+        
+        <section class="container">
+            <a href="#modal-crane" class="button open-modal">modal</a>
+        </section>
+    </main>
     
     <!-- Custom elemento para o modal -->
-    <c-modal id="modal-crane" class="c-modal">
-        <div class="c-modal-container">
-            <div class="c-modal-content">
-                <button type="button" class="close">&times;</button>
+    <c-modal id="modal-crane" class="cmodal">
+        <div class="cmodal-container">
+            <div class="cmodal-content">
+                <a href="#close" data-button="close" class="close">x</a>
             </div>
         </div>
     </c-modal>

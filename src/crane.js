@@ -12,6 +12,81 @@ Crane = {
     },
     
     /**
+     * Verifica se existe uma classe no elemento
+     *
+     * @param {string} className  Nome da classe para a verificação
+     * @example pedal(".myEl").hasClass("minhaclass")  caso exista no elemento retorna true
+     * @return {Boolean} Retorna true caso a classe axiste no elemento
+     */
+    hasClass: function (element, className) {
+        // verifica se existe um espaço vazio no inicio do texto antes da classe e no final
+        var regex = new RegExp( '(\\s|^)'+ className +'(\\s|$)' );
+
+        return (element.className.match(regex) === null) ? false : true;
+    },
+    
+    /**
+     * Adiciona uma classe de um ou mais elementos
+     *
+     * @param {string} className  Nome da classe que sera adicionada ao elemento
+     */
+    addClass: function(element, value) {
+        // Regex terms
+        var rclass = /[\t\r\n\f]/g,
+            rnotwhite = (/\S+/g);
+
+        var classes,
+            cur,
+            curClass,
+            finalValue,
+            proceed = typeof value === "string" && value;
+
+        if (!proceed) {
+            return element;
+        }
+
+        classes = (value || "").match(rnotwhite) || [];
+        cur = element.nodeType === 1 && (element.className ? (" " + element.className + " ").replace(rclass, " ") : " ");
+
+        if (!cur) {
+            return element;
+        }
+        
+        var j = 0;
+        while ((curClass = classes[j++])) {
+            if (cur.indexOf(" " + curClass + " ") < 0) {
+                cur += curClass + " ";
+            }
+        }
+
+        // only assign if different to avoid unneeded rendering.
+        finalValue = cur.trim();
+
+        if (element.className !== finalValue) {
+            element.className = finalValue;
+        }
+
+        return element;
+    },
+    
+    /**
+     * Remove uma classe de um ou mais elementos
+     *
+     * @param {string} className  Nome da classe que sera adicionada ao elemento
+     */
+    removeClass: function (element, className) {
+        var _this = this;
+        
+        var classes = className.split(",");
+        var len = classes.length;
+        
+        for (var k = 0; k < len; k++) {
+            var regex = new RegExp('(\\s|^)' + classes[k] + '(\\s|$)');
+            element.className = element.className.replace(regex, " ").replace(/^\s+|\s+$/g, '');
+        }
+    },
+    
+    /**
      * create all custom HTML elements
      */
     createElements: function() {

@@ -15,11 +15,15 @@ Crane.tmpl = function(id, options) {
     var code = 'with(obj) { var r=[];\n';
     var cursor = 0;
     var result;
-    var html = document.getElementById(id).innerHTML;
+    var html = document.querySelector(id).innerHTML;
 
     var add = function(line, js) {
-        js? (code += line.match(reExp) ? line + '\n' : 'r.push(' + line + ');\n') :
-            (code += line != '' ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : '');
+        if (js) {
+            code += line.match(reExp) ? line + '\n' : 'r.push(' + line + ');\n'
+        } else {
+            code += line != '' ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : '';
+        }
+        
         return add;
     }
 
